@@ -21,12 +21,20 @@ app.listen(port);
 var connection = mysql.createConnection({
     host:'localhost',
     user:'root',
-    password: 'Asdqqwe321!',
-    database:'movie_planner_DB'
+    port:'3306',
+    password:'new_password',
+    database:'movie_planner_db'
 
 });
 
 connection.connect(function(err){
     if(err)throw err;
     console.log('Connected as id: ' + connection.threadID);
+})
+
+
+app.get('/', function(req,res){
+    connection.query('SELECT * FROM movies;',function(err,data){
+        res.render('index',{movies:data});
+    })
 })
