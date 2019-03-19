@@ -38,3 +38,10 @@ app.get('/', function(req,res){
         res.render('index',{movies:data});
     })
 })
+
+app.post('/create', function(req,res){
+    connection.query('INSERT INTO movies (movie) VALUES(?);', [req.body.movie], function(err,result){
+        if(err)throw(err);
+        res.redirect('/');
+    })
+})
