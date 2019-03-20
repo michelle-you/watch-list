@@ -2,7 +2,13 @@
 <ul>
     {{#each movies}}
         <li>
-            <p>{{this.id}}. {{this.movie}}</p>
+            <p>{{this.id}}. {{this.movie}}
+
+            <form action="/delete?_method=DELETE" method="POST">
+                <input type="hidden" name="id" value="{{this.id}}">
+                <button type="submit">DELETE</button>
+            </form>
+            </p>
         </li>
     {{/each}}
 </ul>
@@ -11,4 +17,11 @@
 <form method="POST" action="/create">
     <textarea type="text" name="movie"></textarea>
     <button type="submit">Save Movie</button>
+</form>
+
+<h2>Update a Movie</h2>
+<form method="POST" action="/update?_method=PUT">
+    <input type="text" name="id" placeholder="id">
+    <textarea type="text" name="movie" placeholder="What do you want to update this movie to?"></textarea>
+    <button type="submit">UPDATE MOVIE</button>
 </form>

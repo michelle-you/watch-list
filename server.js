@@ -45,3 +45,17 @@ app.post('/create', function(req,res){
         res.redirect('/');
     })
 })
+
+app.put('/update', function(req,res){
+    connection.query('UPDATE movies SET movie = ? WHERE id = ?;', [req.body.movie, req.body.id], function(err,results){
+        if(err)throw(err);
+        res.redirect('/');
+    })
+})
+
+app.delete('/delete', function(req,res){
+    connection.query("DELETE FROM movies WHERE id = ?;",[req.body.id], function(err,results){
+        if(err)throw(err);
+        res.redirect('/');
+    })
+})
